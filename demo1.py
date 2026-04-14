@@ -1,4 +1,4 @@
-print("Hello World")
-clg_name = "SGI Institute"
-print("clg name")
-dep = "cse"
+name = "bhanudas"
+surname = " Madival"
+full_name = name + surname
+print(full_name)
