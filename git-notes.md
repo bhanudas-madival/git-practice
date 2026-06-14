@@ -63,3 +63,124 @@ q
 - Compared staged changes using `git diff --staged`
 - Created second commit
 - Viewed history using `git log` and `git log --oneline`
+
+## Git Undo & Recovery
+
+### Restore Modified Files
+
+```bash
+git restore <file>
+```
+
+* Discards unstaged changes.
+* Restores Working Directory from Staging Area.
+
+Example:
+
+```bash
+git restore restore-lab.txt
+```
+
+### Unstage Files
+
+```bash
+git restore --staged <file>
+```
+
+* Removes changes from Staging Area.
+* Keeps Working Directory changes intact.
+
+Example:
+
+```bash
+git restore --staged restore-lab.txt
+```
+
+### Git Areas
+
+* **HEAD** → Last committed snapshot.
+* **Staging Area** → What will be included in the next commit.
+* **Working Directory** → Current files being edited.
+
+### Reset Types
+
+#### Soft Reset
+
+```bash
+git reset --soft HEAD~1
+```
+
+* Moves HEAD only.
+* Staging Area unchanged.
+* Working Directory unchanged.
+
+Result:
+
+```text
+HEAD != Staging Area = Working Directory
+```
+
+#### Mixed Reset
+
+```bash
+git reset --mixed HEAD~1
+```
+
+* Moves HEAD.
+* Resets Staging Area to match HEAD.
+* Working Directory unchanged.
+
+Result:
+
+```text
+HEAD = Staging Area != Working Directory
+```
+
+#### Hard Reset
+
+```bash
+git reset --hard HEAD~1
+```
+
+* Moves HEAD.
+* Resets Staging Area.
+* Resets Working Directory.
+
+Result:
+
+```text
+HEAD = Staging Area = Working Directory
+```
+
+### Easy Memory Rule
+
+```text
+soft  -> affects HEAD
+
+mixed -> affects HEAD + Staging Area
+
+hard  -> affects HEAD + Staging Area + Working Directory
+```
+
+### Lab Observations
+
+```bash
+git reset --soft HEAD~1
+```
+
+* Removes commit from branch history.
+* Keeps changes staged.
+
+```bash
+git restore --staged restore-lab.txt
+```
+
+* Unstages changes.
+* Does not modify file contents.
+
+```bash
+git restore restore-lab.txt
+```
+
+* Discards Working Directory changes.
+* Restores file from Staging Area 
