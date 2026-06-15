@@ -184,3 +184,94 @@ git restore restore-lab.txt
 
 * Discards Working Directory changes.
 * Restores file from Staging Area 
+
+15 June 2026 (Mon) Git & GitHub
+
+## Undo & Recovery
+
+### Restore and Unstage
+
+* `git restore file`
+
+  * Restores Working Directory from Staging Area.
+  * Discards unstaged changes.
+
+* `git restore --staged file`
+
+  * Restores Staging Area from HEAD.
+  * Unstages changes without modifying Working Directory content.
+
+### Three-Area Model
+
+* HEAD = Last committed snapshot.
+* Staging Area (Index) = Next commit snapshot.
+* Working Directory = Current files on disk.
+
+### Reset Modes
+
+* `git reset --soft HEAD~1`
+
+  * Moves HEAD only.
+
+* `git reset --mixed HEAD~1`
+
+  * Moves HEAD and resets Staging Area.
+
+* `git reset --hard HEAD~1`
+
+  * Moves HEAD, resets Staging Area, and resets Working Directory.
+
+Memory Rule:
+
+* soft  → HEAD
+* mixed → HEAD + Staging Area
+* hard  → HEAD + Staging Area + Working Directory
+
+### Recover Deleted Files
+
+* Deleted but not staged:
+
+  * `git restore file`
+
+* Deleted and staged:
+
+  * `git restore --staged file`
+  * `git restore file`
+
+* Deleted and committed:
+
+  * Find commit using `git log --oneline`
+  * Recover file from older commit:
+
+    * `git checkout <commit> -- <file>`
+
+### Detached HEAD
+
+* Enter detached state:
+
+  * `git checkout <commit>`
+  * `git switch --detach <commit>`
+
+* HEAD points directly to a commit instead of a branch.
+
+* Commits created in detached state can become unreachable if no branch references them.
+
+### Detached HEAD Recovery
+
+* Create branch from detached commit:
+
+  * `git branch recovered-work <commit>`
+
+* Create and switch to branch from current detached commit:
+
+  * `git switch -c <branch-name>`
+
+### Practical Lab Outcome
+
+Created multiple histories from Commit B:
+
+* main → C
+* recovered-work → D → E
+* new-brach-at-B → F
+
+Observed that switching branches changes Working Directory contents to match the checked-out branch tip.
