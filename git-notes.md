@@ -275,3 +275,126 @@ Created multiple histories from Commit B:
 * new-brach-at-B → F
 
 Observed that switching branches changes Working Directory contents to match the checked-out branch tip.
+
+## Branching & Collaboration
+
+### Creating Branches
+
+```bash
+git branch
+git branch feature-login
+```
+
+- Branch = Independent line of development.
+- Allows working on features without affecting main branch.
+
+### Switching Branches
+
+```bash
+git switch feature-login
+git switch main
+```
+
+- `git switch` is the modern command for changing branches.
+
+### Understanding git checkout
+
+```bash
+git checkout feature-login
+git checkout -b feature-login
+```
+
+- Older command used for switching branches.
+- Can create and switch to a branch in one command.
+- `git switch` is preferred for branch operations.
+
+### Merging Branches
+
+```bash
+git merge feature-login
+```
+
+- Combines changes from one branch into another.
+- Usually merge feature branch into main after testing.
+
+### Merge Conflict Resolution
+
+Conflict markers:
+
+```text
+<<<<<<< HEAD
+Main branch code
+=======
+Feature branch code
+>>>>>>> feature-login
+```
+
+Resolution steps:
+
+1. Edit file manually.
+2. Remove conflict markers.
+3. Keep desired content.
+4. Stage resolved file.
+5. Commit merge.
+
+```bash
+git add file.txt
+git commit
+```
+
+### Fast-Forward Merge
+
+- Happens when main has no new commits since branch creation.
+- Git simply moves branch pointer forward.
+- No merge commit created.
+
+### Merge Commit
+
+- Created when both branches have new commits.
+- Preserves branch history.
+- Creates a new commit joining both histories.
+
+### Merge vs Rebase
+
+#### Merge
+
+```bash
+git merge feature-login
+```
+
+- Preserves complete branch history.
+- May create merge commit.
+- Safe for shared branches.
+
+#### Rebase
+
+```bash
+git rebase main
+```
+
+- Replays commits on top of another branch.
+- Creates cleaner linear history.
+- Rewrites commit history.
+
+### Important Concepts
+
+- Branch = Independent development path.
+- HEAD = Pointer to current branch/commit.
+- Fast-Forward Merge = Pointer move only.
+- Merge Commit = New commit combining histories.
+- Merge = Preserve history.
+- Rebase = Rewrite history for cleaner timeline.
+
+### Commands Practiced
+
+```bash
+git branch
+git branch feature-login
+git switch feature-login
+git switch main
+git checkout feature-login
+git checkout -b feature-login
+git merge feature-login
+git rebase main
+git status
+git log --oneline --graph --all
