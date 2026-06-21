@@ -398,3 +398,88 @@ git merge feature-login
 git rebase main
 git status
 git log --oneline --graph --all
+
+## 21 Jun 2026 (Sun) Git & GitHub
+
+### Git Restore & Recovery
+- `git restore file` restores file from Staging Area → Working Directory.
+- Used when file is modified but not staged.
+- After restore:
+  - Working Directory = Staging Area.
+
+### Git Unstage Changes
+- `git restore --staged file`
+- Removes changes from Staging Area.
+- Working Directory remains unchanged.
+- After command:
+  - HEAD = Staging Area
+  - Working Directory still contains modifications.
+
+### HEAD vs Staging Area vs Working Directory
+- Scenario:
+  - Modify file → `git add file` → Modify file again.
+- Result:
+  - HEAD = Last committed version.
+  - Staging Area = Version at time of `git add`.
+  - Working Directory = Latest modified version.
+
+### Git Reset
+#### Soft Reset
+- `git reset --soft HEAD~1`
+- HEAD moves back one commit.
+- Staging Area unchanged.
+- Working Directory unchanged.
+
+#### Mixed Reset
+- `git reset --mixed HEAD~1`
+- HEAD moves back one commit.
+- Staging Area reset to HEAD.
+- Working Directory unchanged.
+
+#### Hard Reset
+- `git reset --hard HEAD~1`
+- HEAD moves back one commit.
+- Staging Area reset to HEAD.
+- Working Directory reset to HEAD.
+- Can permanently discard uncommitted changes.
+
+### Recover Deleted Files
+#### File Deleted but Not Staged
+- `rm report.txt`
+- Recover using:
+  - `git restore report.txt`
+- Git copies:
+  - Staging Area → Working Directory.
+
+#### File Deleted and Staged
+- `rm report.txt`
+- `git add .`
+- Recovery:
+  - `git restore --staged report.txt`
+  - `git restore report.txt`
+
+#### File Deleted and Commit Already Made
+- Find commit:
+  - `git log -- report.txt`
+- Recover file:
+  - `git restore --source=<commit-id> report.txt`
+  - or `git checkout <commit-id> -- report.txt`
+
+### Detached HEAD
+- Occurs when checking out a commit directly.
+- HEAD points to commit instead of branch.
+- New commits created here are not attached to any branch.
+- To preserve commits:
+  - `git switch -c branch_name`
+  - or `git branch branch_name`
+
+### Review Results
+- Reviewed Git Recovery & Reset flashcards.
+- Strong understanding of:
+  - HEAD
+  - Staging Area (Index)
+  - Working Directory
+- Identified weak areas:
+  - Detached HEAD
+  - File recovery from history
+  - Restore source/destination concepts
