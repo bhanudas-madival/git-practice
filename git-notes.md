@@ -483,3 +483,28 @@ git log --oneline --graph --all
   - Detached HEAD
   - File recovery from history
   - Restore source/destination concepts
+
+## Git Recovery & Restore Review
+
+- Reviewed `git restore` and `git restore --staged`.
+- Practiced recovering deleted tracked files.
+- Learned file recovery from commit history:
+  - `git checkout <commit-id> -- file`
+  - `git restore --source=<commit-id> file`
+- Reviewed Detached HEAD:
+  - HEAD points directly to a commit.
+  - Commits can become unreachable.
+  - Preserve work using:
+    - `git switch -c <branch-name>`
+    - `git branch <branch-name>`
+
+### Key Concepts
+- HEAD
+- Staging Area (Index)
+- Working Directory
+- File Recovery
+- Detached HEAD
+
+## Learned recovery of lost commits using:
+
+git reflog
