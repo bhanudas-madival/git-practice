@@ -508,3 +508,183 @@ git log --oneline --graph --all
 ## Learned recovery of lost commits using:
 
 git reflog
+
+
+# Git & GitHub Notes - 19 June 2026 (Fri)
+
+## Branching & Collaboration
+
+### Branch Creation
+
+```bash
+git branch feature-login
+```
+
+- Branch = Pointer to the latest commit.
+- Creating a branch does not copy files.
+- Creating a branch does not switch to it.
+- Git branches are lightweight because only a pointer is created.
+
+### Branch Switching
+
+```bash
+git switch feature-login
+git switch master
+```
+
+- HEAD points to the current branch.
+- New commits move the branch pointed to by HEAD.
+- Switching branches updates the Working Directory to match the target branch commit.
+
+### git checkout
+
+```bash
+git checkout feature-login
+git checkout -b feature-payment
+```
+
+- `git checkout branch-name` → Switch to existing branch.
+- `git checkout -b branch-name` → Create and switch to a new branch.
+- `git switch` was introduced to simplify branch operations.
+
+### Branch Isolation
+
+Example:
+
+```text
+master ---------> Initial Commit
+
+feature-login --> Add login feature
+```
+
+- Changes committed in one branch are not automatically visible in another branch.
+- Switching branches restores files to the state of the commit pointed to by that branch.
+
+### Fast-Forward Merge
+
+```bash
+git merge feature-login
+```
+
+Condition:
+
+```text
+master -------------> A
+
+feature-login ------> B
+```
+
+- Master has no new commits after branching.
+- Git simply moves the branch pointer forward.
+- No new commit is created.
+
+### Merge Commit
+
+Condition:
+
+```text
+master -------------> M1
+
+feature-payment ----> P1
+```
+
+- Both branches contain unique commits.
+- Fast-forward merge is not possible.
+- Git creates a new commit representing the merge result.
+
+Example:
+
+```text
+850a888 Merge branch 'feature-payment'
+```
+
+### Merge Conflict
+
+Conflict example:
+
+```text
+<<<<<<< HEAD
+hotfix on master
+=======
+Payment Feature Added
+>>>>>>> feature-payment
+```
+
+- HEAD = Current branch version.
+- Incoming section = Merged branch version.
+- Conflict occurs when Git cannot safely decide how to combine changes.
+
+### Conflict Resolution
+
+Steps:
+
+```bash
+nano app.txt
+```
+
+Remove conflict markers and keep desired content.
+
+Verify:
+
+```bash
+cat app.txt
+```
+
+Stage resolved file:
+
+```bash
+git add app.txt
+```
+
+Meaning during conflict resolution:
+
+```text
+I have resolved the conflict.
+Use this version.
+```
+
+Complete merge:
+
+```bash
+git commit
+```
+
+### Important Concepts
+
+```text
+Branch = Pointer to latest commit
+
+HEAD = Pointer to current branch
+
+Fast-Forward Merge
+= Pointer move only
+
+Merge Commit
+= New commit joining histories
+
+Merge Conflict
+= Git cannot decide automatically
+
+git add during conflict
+= Mark conflict as resolved
+```
+
+### Commands Practiced
+
+```bash
+git branch
+git branch feature-login
+git switch feature-login
+git switch master
+git checkout feature-login
+git checkout -b feature-payment
+git merge feature-login
+git merge feature-payment
+git status
+git log --oneline
+git log --oneline --decorate
+git log --oneline --decorate --all
+cat app.txt
+nano app.txt
+git add app.txt
+git commit
