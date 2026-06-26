@@ -688,3 +688,45 @@ cat app.txt
 nano app.txt
 git add app.txt
 git commit
+
+## 26 Jun 2026 - Git Remote Repositories (Part 1)
+
+### Topics Covered
+- Understood the purpose of Remote Repositories.
+- Compared Local Repository vs Remote Repository.
+- Learned how commits move from local `.git` to GitHub.
+- Explored `git remote -v` and understood `origin`.
+- Learned why `origin` is only an alias and can be renamed.
+- Understood how Git knows where to `push` and `pull`.
+- Compared `git clone` vs `git pull`.
+- Practically cloned an existing GitHub repository.
+- Verified that `git clone` automatically:
+  - Creates the target directory.
+  - Creates the `.git` directory.
+  - Downloads complete commit history.
+  - Configures the `origin` remote.
+  - Checks out the default branch.
+- Learned why cloning into an existing non-empty directory fails.
+- Understood that `git push` transfers only commits missing on the remote.
+- Reinforced Git workflow:
+  - Working Directory → Staging Area → Local Repository (.git) → Remote Repository.
+- Learned that uncommitted changes are never pushed.
+- Understood the difference between Git installation and Git repository initialization.
+- Learned why `git status` fails before `git init`.
+- Understood that Git first searches for the `.git` directory (including parent directories) before performing repository operations.
+- Planned a dedicated `git-remote-lab` repository for safe experimentation without affecting portfolio repositories.
+
+### Practical Commands
+```bash
+git remote -v
+git clone <repository-url>
+git status
+```
+
+### Key Mental Models
+- `origin` is an alias for a remote repository URL.
+- `git clone` creates a complete local Git repository.
+- `git pull` updates an existing local repository.
+- `git push` transfers only commits that the remote repository does not already have.
+- `.git` is the heart of a Git repository.
+- Without `.git`, Git cannot perform repository operations.
