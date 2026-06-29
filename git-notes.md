@@ -833,3 +833,103 @@ git status
 - Created and understood merge commits.
 - Read and interpreted Git commit graphs.
 - Completed a full end-to-end Git collaboration workflow.
+
+# 29 Jun 2026 (Mon) - Git Restore, Git Reset & GitHub Essentials
+
+## Git Restore
+
+### Working Directory Restore
+- Learned that `git restore <file>` restores file contents from the Staging Area to the Working Directory.
+- Used to discard uncommitted local changes without affecting the Staging Area or commit history.
+
+### Staging Area Restore
+- Learned that `git restore --staged <file>` restores the staged version from HEAD.
+- Used to unstage files while preserving changes in the Working Directory.
+
+### Mental Model
+- `git restore` works at the **file level**.
+- Default:
+  - Staging Area → Working Directory
+- With `--staged`:
+  - HEAD → Staging Area
+
+---
+
+## Git Reset
+
+### Soft Reset
+- Practiced `git reset --soft`.
+- Learned that only HEAD/current branch moves.
+- Staging Area and Working Directory remain unchanged.
+- Used to undo commits while keeping all changes staged.
+
+### Mixed Reset
+- Practiced `git reset --mixed`.
+- Learned that HEAD/current branch moves and the Staging Area resets to match HEAD.
+- Working Directory remains unchanged.
+- Used to undo commits while keeping changes only in the Working Directory.
+
+### Hard Reset
+- Practiced `git reset --hard`.
+- Learned that HEAD/current branch, Staging Area, and Working Directory all reset to the target commit.
+- Used to completely discard committed and uncommitted changes.
+
+### Mental Model
+- `git reset` works at the **HEAD/branch level**.
+- `--soft` → Move HEAD only.
+- `--mixed` → Move HEAD + reset Staging Area.
+- `--hard` → Move HEAD + reset Staging Area + Working Directory.
+
+---
+
+## Restore vs Reset
+
+### Practical Understanding
+
+- `git restore` changes file contents.
+- `git reset` changes commit history by moving the current branch/HEAD.
+- Understood when both commands can produce similar results (unstaging files) while serving different primary purposes.
+
+---
+
+## GitHub Essentials
+
+### Repository Management
+- Created and managed GitHub repositories.
+- Practiced creating repositories with appropriate initialization options.
+
+### README Management
+- Created and updated README files.
+- Understood the role of README as project documentation.
+
+### .gitignore
+- Practiced using `.gitignore`.
+- Learned how to exclude temporary, generated, and sensitive files from version control.
+
+### Fork Repositories
+- Practiced forking repositories.
+- Understood the difference between cloning and forking.
+- Learned common open-source contribution workflow using forks.
+
+### Pull Requests
+- Created Pull Requests.
+- Reviewed Pull Requests.
+- Merged Pull Requests.
+- Understood the complete Pull Request lifecycle.
+
+### GitHub Workflows
+- Practiced and discussed common GitHub collaboration workflows.
+- Understood how developers collaborate using forks, branches, pull requests, code reviews, and merges.
+
+---
+
+## Practical Skills Achieved
+
+- Confidently differentiate Git Restore and Git Reset.
+- Select the appropriate reset mode based on the desired outcome.
+- Restore file contents without affecting commit history.
+- Move HEAD safely using Soft, Mixed, and Hard Reset.
+- Manage GitHub repositories and project documentation.
+- Configure `.gitignore` effectively.
+- Work with forks and pull requests.
+- Understand complete GitHub collaboration workflow.
